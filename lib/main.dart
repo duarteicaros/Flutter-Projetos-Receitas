@@ -15,22 +15,26 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'DeliMeals',
       theme: ThemeData(
-        primarySwatch: Colors.pink,
+        colorScheme: ThemeData().colorScheme.copyWith(
+              primary: Colors.pink,
+              secondary: Colors.amber,
+              tertiary: Colors.orange,
+            ),
         // accentColor: Colors.amber,
         fontFamily: 'Raleway',
         canvasColor: const Color.fromRGBO(255, 254, 229, 1),
         textTheme: ThemeData.light().textTheme.copyWith(
-              titleSmall: TextStyle(
+              titleSmall: const TextStyle(
                 fontFamily: 'RobotoCondensed',
                 fontSize: 15,
               ),
-              titleMedium: TextStyle(
+              titleMedium: const TextStyle(
                 fontFamily: 'RobotoCondensed',
                 fontSize: 20,
               ),
-              titleLarge: TextStyle(
+              titleLarge: const TextStyle(
                 fontFamily: 'RobotoCondensed',
-                fontSize: 24,
+                fontSize: 25,
               ),
             ),
       ),
@@ -40,6 +44,29 @@ class MyApp extends StatelessWidget {
         AppRoutes.CATEGORIES_MEALS: (context) => const CategoriesMealsScreen(),
         AppRoutes.MEAL_DETAIL: (context) => const MealDetaisScreen(),
       },
+      /* metodo utilizado para fazer uma lógica para ver para qual tela o usuário será direcionado */
+      // onGenerateRoute: (settings) {
+      //   if (settings.name == '/alguma-coisa') {
+      //     return null;
+      //   } else if (settings.name == '/outra-coisa') {
+      //     return null;
+      //   } else {
+      //     return MaterialPageRoute(
+      //       builder: (_) {
+      //         return const CategoriesScreen();
+      //       },
+      //     );
+      //   }
+      // },
+
+      /*Metodo utilizado para caso ele não encontre a rota, redirecionar para a pagina inicial*/
+      // onUnknownRoute: (settings) {
+      //   return MaterialPageRoute(
+      //     builder: (_) {
+      //       return const CategoriesScreen();
+      //     },
+      //   );
+      // },
     );
   }
 }
