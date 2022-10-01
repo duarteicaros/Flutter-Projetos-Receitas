@@ -18,7 +18,7 @@ class MealDetaisScreen extends StatelessWidget {
   Widget _createSectionContainer(Widget child) {
     return Container(
       width: 330,
-      height: 200,
+      height: 250,
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
