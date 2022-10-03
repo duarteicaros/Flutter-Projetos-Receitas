@@ -22,6 +22,7 @@ class _MyAppState extends State<MyApp> {
   Settings settings = Settings();
 
   List<Meal> _availableMeals = DUMMY_MEALS;
+  List<Meal> _favoriteMeals = [];
 
   void _filterMeals(Settings settings) {
     setState(() {
@@ -39,6 +40,18 @@ class _MyAppState extends State<MyApp> {
             !filterVegetarian;
       }).toList();
     });
+  }
+
+  void _toggleFavorite(Meal meal) {
+    setState(() {
+      _favoriteMeals.contains(meal)
+          ? _favoriteMeals.remove(meal)
+          : _favoriteMeals.add(meal);
+    });
+  }
+
+  bool _isFavorite(Meal meal) {
+    return _favoriteMeals.contains(meal);
   }
 
   @override
@@ -71,10 +84,11 @@ class _MyAppState extends State<MyApp> {
       ),
       // initialRoute: '/',
       routes: {
-        AppRoutes.HOME: (context) => const TabsScreen(),
+        AppRoutes.HOME: (context) => TabsScreen(_favoriteMeals),
         AppRoutes.CATEGORIES_MEALS: (context) =>
             CategoriesMealsScreen(_availableMeals),
-        AppRoutes.MEAL_DETAIL: (context) => const MealDetaisScreen(),
+        AppRoutes.MEAL_DETAIL: (context) =>
+            MealDetaisScreen(_toggleFavorite, _isFavorite),
         AppRoutes.SETTINGS: (context) => SettingsScreen(settings, _filterMeals),
       },
       /* metodo utilizado para fazer uma lógica para ver para qual tela o usuário será direcionado */
